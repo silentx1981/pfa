@@ -7,18 +7,47 @@ use PhpOffice\PhpSpreadsheet\Reader\Csv;
 
 class Analyze
 {
+	private $categories = [];
+
+	public function __construct()
+	{
+		$this->categories = json_decode(file_get_contents('../config/categories.json'), true);
+	}
+
 	public function analyze($file)
 	{
 		$data = $this->getArrayFromFile($file);
 		$data = $this->removeDataWithoutDate($data);
+		$parsed = $this->parseData($data);
+		$calculated = $this->calculateData($parsed);
+		$result = [
+			'calculated' => $calculated,
+			'parsed'     => $parsed,
+			'raw'        => $data,
+		];
 
 		echo '<pre>';
-		print_r($data);
+		print_r($result);
+	}
+
+	private function calculateData($data)
+	{
+		$result = [];
+		foreach ($data as $category => $values) {
+			$result[$category] = [
+				'total' => 0,
+			];
+			foreach ($values as $value)
+				$result[$category]['total'] += $value[3] ?? 0;
+		}
+
+		return $result;
 	}
 
 	private function getArrayFromFile($file)
 	{
 		$reader = new Csv();
+		$reader->setInputEncoding('ISO-8859-15');
 		$reader->setReadDataOnly(true);
 		$spreadsheet = $reader->load($file['tmp_name']);
 		$worksheet = $spreadsheet->getActiveSheet();
@@ -32,6 +61,32 @@ class Analyze
 				$cells[] = $cell->getValue();
 			}
 			$result[] = $cells;
+		}
+
+		return $result;
+	}
+
+	private function parseData(array $data)
+	{
+		$result = [
+			'undefined' => [],
+		];
+		foreach ($data as $value) {
+			$textFound = false;
+			foreach ($this->categories as $category => $rule) {
+				if (!isset($result[$category]))
+					$result[$category] = [];
+
+				foreach ($rule as $text) {
+					if (strpos($value[1], $text) && !$textFound) {
+						$result[$category][] = $value;
+						$textFound = true;
+					}
+				}
+			}
+
+			if (!$textFound)
+				$result['undefined'][] = $value;
 		}
 
 		return $result;
