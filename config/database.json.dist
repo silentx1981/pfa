@@ -1,0 +1,5 @@
+{
+	"dsn": "mysql:dbname=pfa;host=ip-adress",
+	"username": "pfa",
+	"password": "pfa"
+}
