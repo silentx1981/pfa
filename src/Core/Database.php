@@ -17,6 +17,6 @@ class Database
 
 	public function query($sql, $data = [])
 	{
-
+		return $this->pdo->query($sql);
 	}
 }
