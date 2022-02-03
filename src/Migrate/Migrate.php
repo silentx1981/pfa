@@ -32,13 +32,21 @@ class Migrate
 	private function migrateScripts()
 	{
 		$db = new Database();
-		//$data = $db->query('SELECT * FROM pfa_migrate')->fetchAll();
+		$keys = array_column($db->query('SELECT `key` FROM pfa_migrate')->fetchAll(), 'key');
 		$scripts = File::scanDirectory(__DIR__.'/Scripts');
 
 		foreach ($scripts as $script) {
 			$script = str_replace('.php', '', $script);
+			if (in_array($script, $keys))
+				continue;
+
 			$class = "Raffaelwyss\\Pfa\\Migrate\\Scripts\\$script";
-			$class::run();
+			$run = $class::run();
+			if (!$run)
+				continue;
+
+			$sql = "INSERT INTO pfa_migrate (`key`, `description`) VALUES (?, ?)";
+			$db->query($sql, [$script, $class::DESCRIPTION]);
 		}
 
 	}

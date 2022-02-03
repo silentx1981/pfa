@@ -17,6 +17,9 @@ class Database
 
 	public function query($sql, $data = [])
 	{
-		return $this->pdo->query($sql);
+		$stm = $this->pdo->prepare($sql);
+		$stm->execute($data);
+
+		return $stm;
 	}
 }
