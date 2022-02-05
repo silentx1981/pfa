@@ -6,12 +6,19 @@ use DateTime;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
 
 class Analyze
+	extends App
 {
 	private $categories = [];
 
 	public function __construct()
 	{
 		$this->categories = json_decode(file_get_contents('../config/categories.json'), true);
+	}
+
+	public function run()
+	{
+		print_r('analyze');
+		echo '<hr>';
 	}
 
 	public function analyze($file)

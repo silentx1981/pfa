@@ -3,17 +3,42 @@
 namespace Raffaelwyss\Pfa\Migrate;
 
 use PDOException;
+use Raffaelwyss\Pfa\Core\App;
 use Raffaelwyss\Pfa\Core\Database;
 use Raffaelwyss\Pfa\Core\File;
+use Raffaelwyss\Pfa\Core\IApp;
 use Raffaelwyss\Pfa\Migrate\Scripts AS Scripts;
 use Raffaelwyss\Pfa\Migrate\Scripts\V0;
 
 class Migrate
+	extends App
 {
 	public function run()
 	{
 		$this->init();
-		$this->migrateScripts();
+		$routeName = $this->getRouteName();
+
+
+		switch ($routeName) {
+			case 'migrate':
+				print_r('migrate');
+				break;
+			case 'migrate.run':
+				print_r('migrate.run');
+				break;
+			default:
+				print_r('NotFound');
+				break;
+		}
+		echo '<hr>';
+		print_r($this->getRouteName());
+
+		return;
+
+
+
+
+		//$this->migrateScripts();
 
 		print_r(File::scanDirectory(__DIR__.'/Scripts'));
 		echo "Migrate System";
