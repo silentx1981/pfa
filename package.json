@@ -1,0 +1,27 @@
+{
+  "name": "Pfa",
+  "version": "1.0.0",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "register-service-worker": "^1.7",
+    "vue": "^2.6"
+  },
+  "devDependencies": {
+    "@vue/cli": "^4.5.15",
+    "@vue/cli-service": "^4.5.15",
+    "vue-template-compiler": "^2.6",
+    "grunt-cli": "^1.4.3",
+    "grunt-babel": "^7.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-terser": "^2.0.0",
+    "grunt-contrib-uglify": "^5.0"
+  }
+}
