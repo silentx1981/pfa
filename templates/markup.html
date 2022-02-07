@@ -1,11 +1,25 @@
 <html>
     <head>
         <title>Pfa</title>
+        <script src="js/libraries.js"></script>
     </head>
     <body>
         <form enctype="multipart/form-data" action="?analyze=true" method="POST">
             <input name="pfafile" type="file">
             <input type="submit" value="Analyze File">
         </form>
+
+        <div id="app">
+            <hr>
+
+            <input v-model="message" placeholder="edit me">
+            <p>Message is: {{ message }}</p>
+
+            <input id="file" ref="file" type="file" v-on:change="handleFileUpload()">
+
+            <button id="btn1" href="#" @click.prevent="send()">Send</button>
+        </div>
+
+        <script src="js/pfa.js"></script>
     </body>
 </html>

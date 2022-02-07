@@ -17,8 +17,23 @@ class Analyze
 
 	public function run()
 	{
-		print_r('analyze');
-		echo '<hr>';
+
+		$route = $this->getRouteName();
+
+		$x = json_decode(file_get_contents("php://input"), true);
+		if (!isset($x['message']))
+			$x['message'] = 'Start';
+
+		if ($route === 'base') {
+			echo file_get_contents('../templates/markup.html');
+			return;
+		}
+
+		if ($route === 'base.data') {
+			$array['message'] = "$x[message] 12345";
+
+			print_r(json_encode($array));
+		}
 	}
 
 	public function analyze($file)

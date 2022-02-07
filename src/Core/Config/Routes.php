@@ -14,6 +14,10 @@ class Routes
 				'path'   => '/',
 				'class'  => Analyze::class,
 			],
+			"base.data" => [
+				'path'   => '/data',
+				'class'  => Analyze::class,
+			],
 			'migrate' => [
 				'path'   => '/migrate',
 				'class'  => Migrate::class,
