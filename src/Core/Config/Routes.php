@@ -3,9 +3,11 @@
 namespace Raffaelwyss\Pfa\Core\Config;
 
 use Raffaelwyss\Pfa\Core\Analyze;
+use Raffaelwyss\Pfa\Core\IRoutes;
 use Raffaelwyss\Pfa\Migrate\Migrate;
 
 class Routes
+	implements IRoutes
 {
 	public static function getRoutes()
 	{

@@ -3,6 +3,8 @@
 namespace Raffaelwyss\Pfa\Core\Routing;
 
 use Raffaelwyss\Pfa\Core\Config\Routes;
+use Raffaelwyss\Pfa\Core\File;
+use Raffaelwyss\Pfa\Core\Filesystem;
 use Raffaelwyss\Pfa\Core\IApp;
 use Raffaelwyss\Pfa\Migrate\Migrate;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -16,7 +18,7 @@ class Router
 	public function run()
 	{
 		$context = new RequestContext();
-		$routes = $this->parseRoutes(Routes::getRoutes());
+		$routes = $this->parseRoutes($this->getRoutes());
 		$matcher = new UrlMatcher($routes, $context);
 		$uri = $_SERVER['REQUEST_URI'];
 
@@ -31,6 +33,21 @@ class Router
 
 		$class->setRouteName($route['name']);
 		$class->run();
+	}
+
+	private function getRoutes()
+	{
+		$result = [];
+		$mainFolder = Filesystem::scanDirectory('../src/', ['isDir' => true]);
+		foreach($mainFolder as $name) {
+			$class = "Raffaelwyss\\Pfa\\$name\\Config\\Routes";
+			if (!class_exists($class))
+				continue;
+
+			$result = array_merge($result, $class::getRoutes());
+		}
+
+		return $result;
 	}
 
 	private function parseRoutes(array $routes)
