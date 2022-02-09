@@ -9,6 +9,15 @@ class Analyze
 {
 	public function run()
 	{
-		print_r('Analyze');
+		$routeName = $this->getRouteName();
+
+		if ($routeName === 'analyze.import') {
+			$this->setTemplateName('Import.html');
+			$this->showTemplate();
+		} else {
+			$this->setTemplateName('Overview.html');
+			$this->showTemplate();
+		}
+
 	}
 }

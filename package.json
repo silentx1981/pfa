@@ -9,7 +9,10 @@
   "dependencies": {
     "register-service-worker": "^1.7",
     "vue": "^2.6",
-    "axios": "^0.25"
+    "axios": "^0.25",
+    "bootstrap": "^5.0",
+    "@popperjs/core": "^2.11.2",
+    "sass": "^1.49.7"
   },
   "devDependencies": {
     "@vue/cli": "^4.5.15",

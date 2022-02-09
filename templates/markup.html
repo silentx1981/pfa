@@ -2,8 +2,17 @@
     <head>
         <title>Pfa</title>
         <script src="js/libraries.js"></script>
+        <script src="js/design.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/design.css">
     </head>
     <body>
+
+        <div class="container-fluid">
+            <div class="alert alert-primary" role="alert">
+                A simple primary alert—check it out!
+            </div>
+        </div>
+
         <form enctype="multipart/form-data" action="?analyze=true" method="POST">
             <input name="pfafile" type="file">
             <input type="submit" value="Analyze File">

@@ -11,10 +11,14 @@ class Routes
 	public static function getRoutes()
 	{
 		$result = [
-			"analyzer" => [
+			"analyze" => [
 				'path'   => '/analyze',
 				'class'  => Analyze::class,
 			],
+			"analyze.import" => [
+				'path'   => '/analyze/import',
+				'class'  => Analyze::class,
+			]
 		];
 
 		return $result;

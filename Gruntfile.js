@@ -13,11 +13,23 @@ module.exports = function(grunt) {
 				],
 				dest: 'httpdocs/js/libraries.js'
 			},
+			"design": {
+				src: [
+					'node_modules/bootstrap/dist/js/bootstrap.js'
+				],
+				dest: 'httpdocs/js/design.js'
+			},
 			"pfa": {
 				src: [
 					'srcjs/test.js'
 				],
 				dest: 'httpdocs/js/pfa.js'
+			},
+			"css": {
+				src: [
+					'node_modules/bootstrap/dist/css/bootstrap.css'
+				],
+				dest: 'httpdocs/css/design.css'
 			}
 		}
 	});
