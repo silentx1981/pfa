@@ -1,3 +1,17 @@
-<div>
-    Import?
+<div class="container-fluid" id="AnalyzeImport">
+
+    <div class="mb-3 row">
+        <label for="importFile" class="col-sm-2 col-form-label-lg">Import-Datei</label>
+        <div class="col-sm-10">
+            <input class="form-control form-control-lg" id="importFile" type="file">
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <button type="button" class="btn btn-lg btn-primary" @click.prevent="send()">Importieren</button>
+            <button-counter></button-counter>
+        </div>
+    </div>
 </div>

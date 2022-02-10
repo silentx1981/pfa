@@ -21,7 +21,9 @@ module.exports = function(grunt) {
 			},
 			"pfa": {
 				src: [
-					'srcjs/test.js'
+					'srcjs/test.js',
+					//'srcjs/Core/rwHttp.js',
+					'srcjs/Analyze/Import.js',
 				],
 				dest: 'httpdocs/js/pfa.js'
 			},
